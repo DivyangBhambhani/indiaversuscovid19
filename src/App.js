@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import Dashboard from './components/dashboard/Dashboard';
+import Header from './components/common/Header';
+import Zones from './components/zones/index';
+import Statistics from './components/statistics/index';
+import Analytics from './components/analytics/index';
+import LatestUpdates from './components/latest_updates/index';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    	<BrowserRouter>
+            <Switch>
+                <Route exact path = '/' component={Dashboard} />
+                <Route exact path = '/analytics' component={Analytics} />
+                <Route exact path = '/zones' component={Zones} />
+                <Route exact path = '/statistics' component={Statistics} />
+                <Route exact path = '/updates' component={LatestUpdates} />
+                <Route render = {() => (<Header>Not Found</Header>) } />
+            </Switch>
+        </BrowserRouter>
     </div>
   );
 }
